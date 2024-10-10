@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Estilosa</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1d1d1d, #434343);
+            margin: 0;
+        }
+
+        .calculator {
+            background-color: #282828;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+            width: 320px;
+        }
+
+        .screen {
+            width: 100%;
+            height: 60px;
+            background-color: #111;
+            color: #0f0;
+            font-size: 28px;
+            text-align: right;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: inset 0 0 10px rgba(0, 255, 0, 0.6);
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .buttons button {
+            padding: 20px;
+            font-size: 18px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .buttons button:hover {
+            background-color: #00ccff;
+            color: #111;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 204, 255, 0.5);
+        }
+
+        .buttons button:active {
+            transform: translateY(0);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .buttons button:nth-child(16) {
+            background-color: #ff5757;
+            color: #fff;
+        }
+
+        .buttons button:nth-child(16):hover {
+            background-color: #ff0000;
+            box-shadow: 0 10px 20px rgba(255, 0, 0, 0.5);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <div class="screen" id="screen"></div>
+        <div class="buttons">
+            <button onclick="clearScreen()">C</button>
+            <button onclick="deleteChar()">←</button>
+            <button onclick="appendToScreen('/')">/</button>
+            <button onclick="appendToScreen('*')">*</button>
+            <button onclick="appendToScreen('7')">7</button>
+            <button onclick="appendToScreen('8')">8</button>
+            <button onclick="appendToScreen('9')">9</button>
+            <button onclick="appendToScreen('-')">-</button>
+            <button onclick="appendToScreen('4')">4</button>
+            <button onclick="appendToScreen('5')">5</button>
+            <button onclick="appendToScreen('6')">6</button>
+            <button onclick="appendToScreen('+')">+</button>
+            <button onclick="appendToScreen('1')">1</button>
+            <button onclick="appendToScreen('2')">2</button>
+            <button onclick="appendToScreen('3')">3</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="appendToScreen('0')">0</button>
+            <button onclick="appendToScreen('.')">.</button>
+        </div>
+    </div>
+
+    <script>
+        let screen = document.getElementById('screen');
+
+        function appendToScreen(value) {
+            screen.innerHTML += value;
+        }
+
+        function clearScreen() {
+            screen.innerHTML = '';
+        }
+
+        function deleteChar() {
+            screen.innerHTML = screen.innerHTML.slice(0, -1);
+        }
+
+        function calculate() {
+            try {
+                screen.innerHTML = eval(screen.innerHTML);
+            } catch {
+                screen.innerHTML = 'Erro';
+            }
+        }
+    </script>
+
+</body>
+</html>
